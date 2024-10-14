@@ -1,6 +1,5 @@
 import Entry from '@/app/components/Entrys'
 import NewEntry from '@/app/components/NewEntry'
-import { Analyze } from '@/util/ai'
 import { getUserFromClerkID } from '@/util/auth'
 import { prisma } from '@/util/db'
 import Link from 'next/link'
@@ -16,11 +15,7 @@ const getJournalEntries = async () => {
       createdAt: 'desc',
     },
   })
-  try {
-    await Analyze('Analyze the journal entries')
-  } catch (error) {
-    console.log(error)
-  }
+
   return entries
 }
 

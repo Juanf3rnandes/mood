@@ -4,8 +4,6 @@ import { useState } from 'react'
 import { useAutosave } from 'react-autosave'
 import { UpdateJournal } from '@/util/api'
 
-// Carregando o Editor dinamicamente para evitar problemas de SSR
-
 interface EditorProps {
   entry: {
     id: string

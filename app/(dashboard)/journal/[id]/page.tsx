@@ -1,4 +1,5 @@
 import Editor from '@/app/components/Editor'
+import { Analyze } from '@/util/ai'
 import { getUserFromClerkID } from '@/util/auth'
 import { prisma } from '@/util/db'
 
@@ -21,7 +22,17 @@ const getAnalysis = async (journalId: string) => {
       id: journalId,
     },
   })
+
   return analysis
+}
+
+const getFeedback = async () => {
+  try {
+    const test = await Analyze('hello')
+    console.log(test)
+  } catch (error) {
+    console.log(error)
+  }
 }
 
 const analysysMock = [
@@ -37,6 +48,14 @@ const analysysMock = [
 const EntryPage = async ({ params }) => {
   const entry = await getEntry(params.id)
   const analysys = await getAnalysis(params.id)
+  const feedback = await getFeedback()
+
+  try {
+    const test = await Analyze('hello')
+    console.log(test)
+  } catch (error) {
+    console.log(error)
+  }
 
   return (
     <div className=" h-full w-full grid grid-cols-3 overflow-auto">

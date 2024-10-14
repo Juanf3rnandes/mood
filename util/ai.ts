@@ -1,5 +1,5 @@
 import { PromptTemplate } from '@langchain/core/prompts'
-import { OpenAI } from '@langchain/openai'
+import { ChatGoogleGenerativeAI } from '@langchain/google-genai'
 import { StructuredOutputParser } from 'langchain/output_parsers'
 import { z } from 'zod'
 
@@ -44,13 +44,13 @@ const getPrompt = async (content: string) => {
   return input
 }
 
-export const Analyze = async (prompt) => {
-  const model = new OpenAI({
-    model: 'gpt-3.5-turbo',
-    temperature: 0.9,
-    apiKey: process.env.OPENAI_API_KEY,
+export const Analyze = async (prompt: string) => {
+  const model = new ChatGoogleGenerativeAI({
+    model: 'gemini-pro',
+    apiKey: process.env.GOOGLE_API_KEY,
   })
 
   const result = await model.invoke(prompt)
-  console.log(result)
+
+  return result.content
 }
